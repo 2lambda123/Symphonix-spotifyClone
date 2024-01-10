@@ -55,7 +55,7 @@ class UsersController extends Controller
     public function credentialsVerification(Request $request) {
         
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required', 'min:6']
         ]);
     
