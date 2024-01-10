@@ -78,6 +78,6 @@ class UsersController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('message', 'You logedout!');
+        return redirect('/login')->with('message', 'You logged out!');
     }
 }
