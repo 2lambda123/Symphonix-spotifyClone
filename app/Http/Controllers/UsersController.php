@@ -27,7 +27,7 @@ class UsersController extends Controller
         $formFields = $request->validate([
             'username' => ['required', 'min:2',Rule::unique('users', 'username')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => 'required|min:6'
+            'password' => 'required|min:6|confirmed'
         ]);
         
         // Hash the password 
