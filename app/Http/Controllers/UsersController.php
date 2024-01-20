@@ -27,7 +27,7 @@ class UsersController extends Controller
         $formFields = $request->validate([
             'username' => ['required', 'min:2',Rule::unique('users', 'username')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => 'required'
+            'password' => 'required|min:6'
         ]);
         
         // Hash the password 
@@ -56,7 +56,7 @@ class UsersController extends Controller
         
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required', 'min:6']
         ]);
     
         if (Auth::attempt($credentials)) {
@@ -78,6 +78,6 @@ class UsersController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('message', 'You logedout!');
+        return redirect('/login')->with('message', 'You logged out!');
     }
 }
